@@ -1,11 +1,11 @@
 /*
-  This is practice code to help understand the merge-sort algorithm.
-  It borrows from a couple of helpful sources:
-  
-    * http://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm
-    * https://gist.github.com/jzelinskie
+	This is practice code to help understand the merge-sort algorithm.
+	It borrows from a couple of helpful sources:
+	
+		* http://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm
+		* https://gist.github.com/jzelinskie
 
-  This is meant for educational purposes only.
+	This is meant for educational purposes only.
 */
 
 package main
@@ -21,28 +21,28 @@ import (
 func main() {
 	// get list of integers from file
 	file, err := os.Open("integers.txt")
-    if err != nil {         
-        log.Fatal(err)
-    }
-    defer file.Close()
-    
-    // put file contents into string array
-    var lines []string
-    scanner := bufio.NewScanner(file)
-    for scanner.Scan() {
-        lines = append(lines, scanner.Text())
-    }
+		if err != nil {         
+				log.Fatal(err)
+		}
+		defer file.Close()
 
-    // convert string array to integer array
-    var ints = []int{}
-    var j int
+		// put file contents into string array
+		var lines []string
+		scanner := bufio.NewScanner(file)
+		for scanner.Scan() {
+				lines = append(lines, scanner.Text())
+		}
 
-    for i := 0;i<len(lines);i++ {   
-        j, err = strconv.Atoi(lines[i])
-        ints = append(ints,j)
-    }
+		// convert string array to integer array
+		var ints = []int{}
+		var j int
+
+		for i := 0;i<len(lines);i++ {   
+				j, err = strconv.Atoi(lines[i])
+				ints = append(ints,j)
+		}
 	b := mergesort(ints)
-	
+
 	// display sorted ints
 	for i:=0;i<len(b);i++ {
 		fmt.Println(b[i])
@@ -53,15 +53,15 @@ func main() {
 Prototype source: http://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm
 
 procedure mergesort( var a as array )
-   if ( n == 1 ) return a
+	 if ( n == 1 ) return a
 
-   var l1 as array = a[0] ... a[n/2]
-   var l2 as array = a[n/2+1] ... a[n]
+	 var l1 as array = a[0] ... a[n/2]
+	 var l2 as array = a[n/2+1] ... a[n]
 
-   l1 = mergesort( l1 )
-   l2 = mergesort( l2 )
+	 l1 = mergesort( l1 )
+	 l2 = mergesort( l2 )
 
-   return merge( l1, l2 )
+	 return merge( l1, l2 )
 end procedure
 */
 func mergesort(ary []int) []int {
@@ -82,29 +82,29 @@ Prototype source: http://www.tutorialspoint.com/data_structures_algorithms/merge
 
 procedure merge( var a as array, var b as array )
 
-   var c as array
+	 var c as array
 
-   while ( a and b have elements )
-      if ( a[0] > b[0] )
-         add b[0] to the end of c
-         remove b[0] from b
-      else
-         add a[0] to the end of c
-         remove a[0] from a
-      end if
-   end while
-   
-   while ( a has elements )
-      add a[0] to the end of c
-      remove a[0] from a
-   end while
-   
-   while ( b has elements )
-      add b[0] to the end of c
-      remove b[0] from b
-   end while
-   
-   return c
+	 while ( a and b have elements )
+			if ( a[0] > b[0] )
+				 add b[0] to the end of c
+				 remove b[0] from b
+			else
+				 add a[0] to the end of c
+				 remove a[0] from a
+			end if
+	 end while
+	 
+	 while ( a has elements )
+			add a[0] to the end of c
+			remove a[0] from a
+	 end while
+	 
+	 while ( b has elements )
+			add b[0] to the end of c
+			remove b[0] from b
+	 end while
+	 
+	 return c
 	
 end procedure
 */
@@ -126,6 +126,6 @@ func merge(a1 []int, a2 []int) []int {
 			c = append(c,a2[0])
 			a2 = a2[1:]
 		}
-	}	
+	}
 	return c
 }
